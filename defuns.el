@@ -1,6 +1,7 @@
 (add-hook 'vhdl-mode-hook
           (lambda ()
-            (define-key vhdl-mode-map (kbd "C-c , c") 'rr/nand2tetris-simulate-and-compare)))
+            (define-key vhdl-mode-map (kbd "C-c , c") 'rr/nand2tetris-simulate-and-compare)
+            (define-key vhdl-mode-map (kbd "SPC") 'self-insert-command)))
 
 (add-to-list 'auto-mode-alist '(".hdl$" . vhdl-mode))
 
