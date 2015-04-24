@@ -8,7 +8,7 @@
   - [X] Dmux
   - [X] Not16
   - [X] And16
-  - [ ] Or16
+  - [X] Or16
   - [ ] Mux16
   - [ ] Or8Way
   - [ ] Mux4Way16
