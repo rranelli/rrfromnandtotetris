@@ -7,7 +7,7 @@
   - [X] Mux
   - [X] Dmux
   - [X] Not16
-  - [ ] And16
+  - [X] And16
   - [ ] Or16
   - [ ] Mux16
   - [ ] Or8Way
