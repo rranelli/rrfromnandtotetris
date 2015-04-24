@@ -1,4 +1,4 @@
-* project1
+* project 1
   - [X] Nand
   - [X] Not
   - [X] And
@@ -13,5 +13,5 @@
   - [X] Or8Way
   - [X] Mux4Way16
   - [X] Mux8Way16
-  - [ ] Dmux4Way
+  - [X] Dmux4Way
   - [ ] Dmux8Way
