@@ -14,4 +14,4 @@
   - [X] Mux4Way16
   - [X] Mux8Way16
   - [X] Dmux4Way
-  - [ ] Dmux8Way
+  - [X] Dmux8Way
