@@ -10,7 +10,7 @@
   - [X] And16
   - [X] Or16
   - [X] Mux16
-  - [ ] Or8Way
+  - [X] Or8Way
   - [ ] Mux4Way16
   - [ ] Mux8Way16
   - [ ] Dmux4Way
