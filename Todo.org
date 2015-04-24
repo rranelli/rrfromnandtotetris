@@ -4,8 +4,8 @@
   - [X] And
   - [X] Or
   - [X] Xor
-  - [ ] Mux
-  - [ ] Dmux
+  - [X] Mux
+  - [X] Dmux
   - [ ] Not16
   - [ ] And16
   - [ ] Or16
