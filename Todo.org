@@ -6,7 +6,7 @@
   - [X] Xor
   - [X] Mux
   - [X] Dmux
-  - [ ] Not16
+  - [X] Not16
   - [ ] And16
   - [ ] Or16
   - [ ] Mux16
