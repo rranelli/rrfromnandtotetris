@@ -7,8 +7,16 @@
 
 (defun rr/nand2tetris-simulate-and-compare ()
   (interactive)
+  (rr/nand2tetris-rm-out)
   (rr/nand2tetris-simulate-hdl)
   (rr/nand2tetris-compare-out))
+
+(defun rr/nand2tetris-rm-out ()
+  (interactive)
+  (->> (buffer-file-name)
+       (replace-regexp-in-string ".hdl$" ".out")
+       (format "rm %s")
+       (shell-command)))
 
 (defun rr/nand2tetris-simulate-hdl ()
   (interactive)
