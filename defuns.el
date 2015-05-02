@@ -8,7 +8,7 @@
 (defun rr/nand2tetris-simulate-and-compare ()
   (interactive)
   (rr/nand2tetris-rm-out)
-  (rr/nand2tetris-simulate-hdl)
+  (message (rr/nand2tetris-simulate-hdl))
   (rr/nand2tetris-compare-out))
 
 (defun rr/nand2tetris-rm-out ()
@@ -20,12 +20,15 @@
 
 (defun rr/nand2tetris-simulate-hdl ()
   (interactive)
+  (shell-command-to-string
+   (rr/nand2tetrist-simulate-hdl-command)))
+
+(defun rr/nand2tetrist-simulate-hdl-command ()
   (->> (buffer-file-name)
        (replace-regexp-in-string ".hdl$" ".tst")
        (format
         "%snand2tetris/tools/HardwareSimulator.sh %s"
-        (projectile-project-root))
-       (shell-command)))
+        (projectile-project-root))))
 
 (defun rr/nand2tetris-compare-out ()
   (interactive)
