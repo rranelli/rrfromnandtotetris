@@ -43,24 +43,56 @@ CHIP ALU {
 
  PARTS:
   // should we zero x or why ??
-  Mux16 (a = x, b = false, sel = zx, out = x1);
-  Mux16 (a = y, b = false, sel = zy, out = y1);
+  Mux16 (a = x, b = false,
+         sel = zx,
+         out = x1);
+  Mux16 (a = y, b = false,
+         sel = zy,
+         out = y1);
 
   // should we negate x1 or y1 ??
   Not16 (in = x1, out = notX1);
   Not16 (in = y1, out = notY1);
 
-  Mux16 (a = x1, b = notX1, sel = nx, out = x2);
-  Mux16 (a = y1, b = notY1, sel = ny, out = y2);
+  Mux16 (a = x1, b = notX1,
+         sel = nx,
+         out = x2);
+  Mux16 (a = y1, b = notY1,
+         sel = ny,
+         out = y2);
 
   // should we `add` or `and` x2 and y2 ??
-  And16 (a = x2, b = y2, out = x2AndY2);
-  Add16 (a = x2, b = y2, out = x2PlusY2);
+  And16 (a = x2, b = y2,
+         out = x2AndY2);
+  Add16 (a = x2, b = y2,
+         out = x2PlusY2);
 
-  Mux16 (a = x2AndY2, b = x2PlusY2, sel = f, out = outz);
+  Mux16 (a = x2AndY2, b = x2PlusY2,
+         sel = f,
+         out = outz);
 
   // should we negate output ?
   Not16 (in = outz, out = notOutz);
 
-  Mux16 (a = outz, b = notOutz, sel = no, out = out);
+  Mux16 (a = outz, b = notOutz,
+         sel = no,
+         out = output);
+
+  // We need `output` as an internal wire.
+  Or16 (a = output, b = output, out = out);
+
+  // Setting the zero indicator with smart usage of Or8way
+  // This is equivalent to a Or16Way
+  Or16 (a = output, b = output,
+        out[0..7] = leftOutput,
+        out[8..15] = rightOutput);
+
+  Or8Way (in = leftOutput, out = leftNotZero);
+  Or8Way (in = rightOutput, out = rightNotZero);
+  Or (a = leftNotZero, b = rightNotZero,
+      out = notZero);
+  Not (in = notZero, out = zr);
+
+  // Setting the negative indicator
+  And16 (a = output, b = true, out[15] = ng);
 }
