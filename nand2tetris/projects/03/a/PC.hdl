@@ -12,9 +12,31 @@
  */
 
 CHIP PC {
-    IN in[16],load,inc,reset;
-    OUT out[16];
+  IN in[16], load, inc, reset;
+  OUT out[16];
 
-    PARTS:
-    // Put your code here:
+ PARTS:
+  // This is the register that will keep the counter state
+  Register(in = nextVal, load = true,
+           out = state);
+
+  // The incremented state. May or may not be written back to the register
+  Inc16(in = state,
+        out = incState);
+
+  // Should we increment the counter?
+  Mux16(a = state, b = incState, sel = inc,
+        out = o1);
+
+  // Should we load the counter with the input value?
+  Mux16(a = o1, b = in, sel = load,
+        out = o2);
+
+  // Should we reset the counter regardless of everything else ?
+  Mux16(a = o2, b = false, sel = reset,
+        out = nextVal);
+
+  // Forwarding state to output
+  Or16(a = state, b = state,
+       out = out);
 }
