@@ -10,9 +10,11 @@
  */
 
 CHIP Bit {
-    IN in, load;
-    OUT out;
+  IN in, load;
+  OUT out;
 
-    PARTS:
-    // Put your code here:
+ PARTS:
+  Mux (a = outz, b = in, sel = load, out = feed);
+  DFF (in = feed, out = outz);
+  Or (a = outz, b = outz, out = out);
 }
