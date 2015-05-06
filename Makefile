@@ -3,5 +3,14 @@ install:
 	unzip nand2tetris.zip
 	rm nand2tetris.zip
 
-%.zip:
-	zip -j $@ nand2tetris/projects/$(subst .zip,,$@)/*?/?*.hdl
+define zip
+	zip -j $@ $^
+endef
+
+PRJDIR := nand2tetris/projects
+
+%.zip: $(PRJDIR)/%/*
+	$(zip)
+
+%.zip: $(PRJDIR)/%/*/?*
+	$(zip)
