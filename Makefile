@@ -4,4 +4,4 @@ install:
 	rm nand2tetris.zip
 
 %.zip:
-	zip -j $@ nand2tetris/projects/$(subst .zip,,$@)/*
+	zip -j $@ nand2tetris/projects/$(subst .zip,,$@)/*?/?*.hdl
