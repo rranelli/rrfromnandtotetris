@@ -9,8 +9,8 @@ endef
 
 PRJDIR := nand2tetris/projects
 
-%.zip: $(PRJDIR)/%/*
+%.zip: $(PRJDIR)/%/*/?*
 	$(zip)
 
-%.zip: $(PRJDIR)/%/*/?*
+%.zip: $(PRJDIR)/%/*
 	$(zip)
