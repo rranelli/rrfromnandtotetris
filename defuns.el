@@ -33,18 +33,16 @@
 
 (defun rr/nand2tetris-simulate-cpu ()
   (interactive)
-  (->> (buffer-file-name)
-       (replace-regexp-in-string ".asm$" ".tst")
-       (format "%snand2tetris/tools/CPUEmulator.sh %s"
-               (projectile-project-root))
-       (compile)))
-
-(defun rr/nand2tetris-assemble ()
-  (interactive)
-  (->> (buffer-file-name)
-       (format "%snand2tetris/tools/Assembler.sh %s"
-               (projectile-project-root))
-       (compile)))
+  (->>
+   (s-join " && " (list
+                   (->> (buffer-file-name)
+                        (format "%snand2tetris/tools/Assembler.sh %s"
+                                (projectile-project-root)))
+                   (->> (buffer-file-name)
+                        (replace-regexp-in-string ".asm$" ".tst")
+                        (format "%snand2tetris/tools/CPUEmulator.sh %s"
+                                (projectile-project-root)))))
+   (compile)))
 
 (defun rr/nand2tetris-compare-out ()
   (interactive)
