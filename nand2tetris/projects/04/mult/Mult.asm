@@ -27,6 +27,11 @@ D=M
 M=D
 
 (LOOP)
+  @rone //check if I should stop the loop
+  D=M
+  @END
+  D;JEQ
+
   @R2 // set D to the result so far
   D=M
 
@@ -38,13 +43,9 @@ M=D
 
   @rone // decrement the value of `rone`
   M=M-1
-  D=M // grap the value of `rone` to check if the loop should continue
-
-  @END
-  D=D-1;JLT // if `rone` is now -1 that means we have to stop the loop,
 
   @LOOP
-  0;JMP // Back to the beginning
+  0;JMP // Back to the beginning of the loop
 (END)
 
 @END
