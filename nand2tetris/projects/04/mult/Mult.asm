@@ -8,17 +8,11 @@
 
 	// Put your code here.
 	@R2
-	M=0 // initialize result to be zero
+	M = 0 // initialize result to be zero
 
-	@R0 // jump to the end if the value of R0 is zero
-	D=M
-
-	@END
-	D; JEQ
-
-	@R1 // jump to the end if the value of R1 is zero
-	D = M
-	@END
+	@R0  // jump to the end if the value of R0 is zero
+	D = M  // You could skip this check because it will make no effect outside
+	@END // but you will do redundant work
 	D; JEQ
 
 	@R1 // store the value of R1 into rone
