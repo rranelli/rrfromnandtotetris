@@ -14,3 +14,15 @@ PRJDIR := nand2tetris/projects
 
 %.zip: $(PRJDIR)/%/*
 	$(zip)
+
+assemble:
+	$(PRJDIR)/06/assembler $(PRJDIR)/06/add/Add.asm
+	$(PRJDIR)/06/assembler $(PRJDIR)/06/pong/Pong.asm
+	$(PRJDIR)/06/assembler $(PRJDIR)/06/max/Max.asm
+	$(PRJDIR)/06/assembler $(PRJDIR)/06/rect/Rect.asm
+
+correct_assemble:
+	nand2tetris/tools/Assembler.sh $(PRJDIR)/06/add/Add.asm
+	nand2tetris/tools/Assembler.sh $(PRJDIR)/06/pong/Pong.asm
+	nand2tetris/tools/Assembler.sh $(PRJDIR)/06/max/Max.asm
+	nand2tetris/tools/Assembler.sh $(PRJDIR)/06/rect/Rect.asm
