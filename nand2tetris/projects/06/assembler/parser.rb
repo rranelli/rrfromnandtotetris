@@ -1,7 +1,7 @@
 class Parser
   def initialize(program)
     @program = Array(program)
-    @symbol_table = SYMBOL_TABLE
+    @symbol_table = SymbolTable.new
   end
 
   def parse
