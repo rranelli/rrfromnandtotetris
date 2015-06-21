@@ -16,7 +16,7 @@ PRJDIR := nand2tetris/projects
 	$(zip)
 
 assemble:
-	$(PRJDIR)/06/assembler $(PRJDIR)/06/add/Add.asm \
+	$(PRJDIR)/06/assembler.rb $(PRJDIR)/06/add/Add.asm \
 		$(PRJDIR)/06/pong/Pong.asm \
 		$(PRJDIR)/06/pong/PongL.asm \
 		$(PRJDIR)/06/max/Max.asm \
