@@ -1,22 +1,21 @@
 class Parser
   def initialize(program)
     @program = Array(program)
-    @var_addr = 16
-    @symbol_table = Hash.new { |hash, key| hash[key] = (self.var_addr += 1) }
+    @symbol_table = SYMBOL_TABLE
   end
 
   def parse
     cleaned = clean(program)
 
+    cleaned.reduce(0) { |a, e| parse_label(e, a) }
     cleaned
-      .reduce(cleaned) { |a, e| parse_label(e, a) }
+      .reject { |i| i.match(/^\((.*)\)$/) }
       .map(&parse_instruction)
   end
 
   private
 
   attr_reader :program, :symbol_table
-  attr_accessor :var_addr
 
   def parse_instruction
     -> (i) { parse_a(i) || parse_c(i) || fail(ArgumentError, i) }
@@ -36,14 +35,12 @@ class Parser
     Instruction::C.new(*match.captures)
   end
 
-  def parse_label(i, program)
+  def parse_label(i, iindex)
     match = i.match(/^\((.*)\)$/)
-    return program unless match
+    return iindex + 1 unless match
 
     symbol = match[1]
-    symbol_table[symbol] = program.index(i)
-
-    program.reject { |e| e == i }
+    symbol_table[symbol] = iindex
   end
 
   def clean(program)

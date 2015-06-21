@@ -4,13 +4,15 @@ class Instruction
       @value, @symbol_table = value, symbol_table
     end
 
-    attr_reader :value, :symbol_table
+    attr_reader :value
 
     def to_machine_code
       '0%015b' % address
     end
 
     private
+
+    attr_reader :symbol_table
 
     def address
       literal_address || symbol_table[value]

@@ -2,6 +2,7 @@
 require_relative 'assembler/ctable'
 require_relative 'assembler/dtable'
 require_relative 'assembler/jtable'
+require_relative 'assembler/symbol_table'
 require_relative 'assembler/instruction'
 require_relative 'assembler/parser'
 
